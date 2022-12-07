@@ -30,6 +30,7 @@ def do_steps(block_struct, steps)
         # puts step_line
         number = step_line.split("from")[0].split("move")[1].to_i
         (1..number).each {|count|
+            # https://stackoverflow.com/a/5006860
             block_struct[to].push(block_struct[from].pop)
             #print block_struct
             #puts ""
@@ -70,6 +71,7 @@ if __FILE__ == $0
     tops = do_steps_9001(x, lines.split("\n\n")[1].split("\n"))
     str = ""
     tops.each{|let| str = str.concat(let)}
+    # https://stackoverflow.com/a/8723129
     print str
     puts ""
 end
