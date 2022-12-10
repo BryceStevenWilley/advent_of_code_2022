@@ -15,6 +15,8 @@ if __FILE__ == $0
   lines = File.read("day4.txt")
   puts lines.split("\n").map{ |pair|
     p = pair.split(",")
+    # NOTE: alt way, could pass back p.map{|r| b,e = r.split("-").map(&:to_i); b..e }
+    # and use cover? instead of contains
     as1 = p[0].split("-").map{|num| num.to_i}
     as2 = p[1].split("-").map{|num| num.to_i}
     if overlap(as1, as2) || overlap(as2, as1)

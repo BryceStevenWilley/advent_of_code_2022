@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
  
+# NOTE: the more consice way would be to put everything into Hashes
+# (shapes, outcomes, scores of each, and the results in a double hash)
+# https://github.com/ahorner/advent-of-code/blob/main/lib/2022/02.rb
 def run_game1(one, two)
   if one == "A"
     if two == "X"

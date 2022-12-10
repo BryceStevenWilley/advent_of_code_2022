@@ -2,11 +2,14 @@
 require 'set'
 
 def recg(signal, ss =4)
+    # NOTE: a great alt: 
+    # signal.each_cons(ss).each_with_index{ |tt, i| break i + ss if tt.uniq.count == ss}
     (ss..signal.length-1).each { |last_idx|
         tt = Set[]
         (1..ss).each { | ii |
             tt.add(signal[last_idx- ii])
         }
+        # NOTE: size and length are the same thing, count w/no args is too
         if tt.length == ss
             return last_idx
         end

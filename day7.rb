@@ -89,6 +89,7 @@ def make_dirs_from_steps(steps)
             current.add_file(name, size)
         end
     }
+    # NOTE: can do select then sum: all_dirs.map{&:get_size}.select{ |size| size < 100_000 }.sum
     puts all_dirs.map{ |v| 
         size = v.get_size
         if size < 100000
@@ -97,6 +98,7 @@ def make_dirs_from_steps(steps)
             0
         end
     }.sum
+    # NOTE: ruby allows `_` in numbers, i.e. `100_000_000`
     remaining = 70000000 - root.get_size
     needed = 30000000 - remaining
     puts all_dirs.map{ |v| v.get_size}.select{|v| v> needed}.min

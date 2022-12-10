@@ -1,12 +1,14 @@
 #!/usr/bin/env ruby
 
 if __FILE__ == $0
-
   lines = File.read("day1.txt")
   puts lines.split("\n\n").map { |elf|
+    # NOTE: could have used `.map(&:to_i)` as well:
+    # https://rubyprogramming.home.blog/2019/03/07/ruby-ampersand/
     elf.split("\n").map{ |snack|
         snack.to_i
     }.sum
+    # NOTE: could have used `.sort.last(3)` instead of reversing the whole list
   }.sort.reverse[0, 3].sum
 end
 

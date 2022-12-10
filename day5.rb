@@ -9,6 +9,7 @@ def create_input(file_text)
     (1..nums).to_a.each{ |num |
         full_struct.append([])
     }
+    # NOTE: 
     start_lines[1,start_lines.length].each_with_index { | blocks, idx |
         (1..nums).each { |idx|
             crate = blocks[1+((idx - 1)*4)]
@@ -17,6 +18,7 @@ def create_input(file_text)
             end
         }
     }
+
     return full_struct
 end
 
@@ -24,6 +26,10 @@ def do_steps(block_struct, steps)
     print block_struct
     puts ""
     steps.each {|step_line|
+        # NOTE: as I assumed, could have done regex:
+        # /move (?<count>\d+) from (?<from>\d+) to (?<to>\d+)/
+        # steps.enum_for(:scan, STEP_MATCHER).map{ Regexp.last_match }
+        # and then step[:from], etc.
         locs = step_line.split("from")[1].split("to")
         from = locs[0].to_i - 1
         to = locs[1].to_i - 1

@@ -2,6 +2,8 @@
 
 # [0]: up, down, [1]: left, right
 
+# NOTE: `require 'matrix'` lets you use `Vector[1, 0]` and supports sums
+
 require 'set'
 
 def update_tail(head_pos, tail_pos)
@@ -52,6 +54,7 @@ end
 
 
 if __FILE__ == $0
+  # NOTE: alt: knots = [[0, 0]] * 10
   knots = []
   (1..10).each{ |knot_idx|
     knots.append([0, 0])
