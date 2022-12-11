@@ -6,6 +6,7 @@ def first()
   reg = 1
   File.read("day10.txt").split("\n").each{ |instr|
     cycle += 1
+    # NOTE: [20, 60, 100, 140, 180, 220].include?(cycle)
     if cycle == 20 || cycle == 60 || cycle == 100 || cycle == 140 || cycle == 180 || cycle == 220
       look.append(reg * cycle)
     end
