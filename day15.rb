@@ -2,6 +2,7 @@
 
 require 'matrix'
 require 'set'
+require 'ruby-prof'
 
 reg = /Sensor at x=(?<sx>-?\d+), y=(?<sy>-?\d+): closest beacon is at x=(?<bx>-?\d+), y=(?<by>-?\d+)/
 
@@ -61,6 +62,14 @@ def blackout_fast(sensors, max_p)
     y = 0
     h = {}
     loop do
+        if x == 0
+          RubyProf.start
+        end
+        if x == 10000
+          result = RubyProf.stop
+          printer = RubyProf::GraphPrinter.new(result)
+          printer.print(STDOUT)
+        end
         filt_s = sensors.select{|s| (s.sensor_pos[0]-x).abs < s.min_dist}.sort_by{|a|
             a.min_dist
         }.map{|s| get_range(s, x)}
@@ -69,7 +78,7 @@ def blackout_fast(sensors, max_p)
             valid = true
             filt_s.each{ |s|
                 r_low = s[0]
-                r_hi = s[1] # = get_range(s.sensor_pos, x)
+                r_hi = s[1] 
                 if r_low <= y && r_hi > y
                     valid = false
                     y = r_hi
@@ -94,7 +103,7 @@ def blackout_fast(sensors, max_p)
                 break
             end
         end
-        h.drop(x)
+        h.delete(x)
         x += 1
         if x > max_p
             break
